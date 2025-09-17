@@ -203,19 +203,31 @@ class Customer {
 };
 
 int main() {
-    // Tạo khách hàng
+    // create customer
     Customer c1("Nguyen Van A", "123456789");
 
-    // Tạo tài khoản thường và tiết kiệm
+    // normal account and saving account
     Account *acc1 = new Account("AC001", "Nguyen Van A", 5000);
     SavingAccount *acc2 = new SavingAccount("AC002", "Nguyen Van A", 10000, 5);
 
-    // Gắn vào khách hàng
+    // link account to customer
     c1.openNewAccount(acc1);
     c1.openNewAccount(acc2);
 
+    // Test operator==
+    Transaction t1(2000, 1, getToday()); // deposit 2000
+    cout << "Test operator:" << endl;
+    *acc1 += t1;  
+    acc1->displayInfo();
+
+    if (*acc1 == *acc2) {
+        cout << "Hai tai khoan co cung so du!" << endl;
+    } else {
+        cout << "Hai tai khoan co so du khac nhau!" << endl;
+    }
+
     // In thông tin có sẵn
-    cout << "===== THONG TIN KHOI TAO =====" << endl;;
+    cout << "===== THONG TIN =====" << endl;;
     cout << "Khach hang: " << c1.getName() << " (ID: " << c1.getID() << ")" << endl;;
     cout << "Tai khoan hien co:" << endl;;
     cout << "- Account thuong: " << acc1->getAccountNumber()
@@ -256,7 +268,7 @@ int main() {
             cin >> accNum;
             cout << "Nhap so tien muon rut: ";
             cin >> amount;
-            if (accNum == acc1->getAccountNu mber()) acc1->withdrawal(amount);
+            if (accNum == acc1->getAccountNumber()) acc1->withdrawal(amount);
             else if (accNum == acc2->getAccountNumber()) {
                 double fee = 100, limit = 2000;
                 acc2->withdrawal(amount, fee, limit);
@@ -267,8 +279,8 @@ int main() {
             string accNum;
             cout << "Nhap so tai khoan: ";
             cin >> accNum;
-            if (accNum == acc1->getAccountNumber()) acc1->isBalanceInquire();
-            else if (accNum == acc2->getAccountNumber()) acc2->isBalanceInquire();
+            if (accNum == acc1->getAccountNumber()) acc1->balanceInquire();
+            else if (accNum == acc2->getAccountNumber()) acc2->balanceInquire();
             else cout << "Khong tim thay tai khoan!" << endl;;
         }
         else if (choice == 4) {
@@ -288,7 +300,7 @@ int main() {
             c1.displayAccounts();
         }
         else if (choice == 0) {
-            cout << "Thoat chuong trinh..." << endl;;
+            cout << "Thoat chuong trinh" << endl;;
         }
         else {
             cout << "Lua chon khong hop le!" << endl;;
