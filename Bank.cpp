@@ -124,7 +124,7 @@ class Account {
             }
         }
 
-        void isBalanceInquire() {
+        void balanceInquire() {
             cout << "The current balance of account " << accountNumber << " is: " << balance << " VND" << endl;
         }
 };
@@ -230,7 +230,7 @@ int main() {
         cout << "1. Nap tien" << endl;;
         cout << "2. Rut tien" << endl;;
         cout << "3. Xem so du" << endl;;
-        cout << "4. Xem lich su giao dich (tung tai khoan)" << endl;;
+        cout << "4. Xem lich su giao dich" << endl;;
         cout << "5. Ap dung lai suat (SavingAccount)" << endl;;
         cout << "6. Tong so du khach hang" << endl;;
         cout << "7. In tat ca thong tin khach hang" << endl;;
@@ -256,7 +256,7 @@ int main() {
             cin >> accNum;
             cout << "Nhap so tien muon rut: ";
             cin >> amount;
-            if (accNum == acc1->getAccountNumber()) acc1->withdrawal(amount);
+            if (accNum == acc1->getAccountNu mber()) acc1->withdrawal(amount);
             else if (accNum == acc2->getAccountNumber()) {
                 double fee = 100, limit = 2000;
                 acc2->withdrawal(amount, fee, limit);
